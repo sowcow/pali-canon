@@ -1,0 +1,59 @@
+
+ul {list-style:none}
+/*nav.child-nodes > ul > li > ul { list-style: disc inside; }*/
+
+aside{float: right}
+nav.comparison{float: right}
+div.clear{clear: both}
+
+
+
+
+/*article{clear: right}*/
+
+table.texts-comparison {
+  border: 0;
+  table-layout: fixed;
+  width: 100%; }
+table.texts-comparison td {
+  vertical-align:top;
+  /*margin-top:0;*/ }
+
+h1, h2 {text-align: center}
+.center {text-align: center}
+/*a.flag {padding: 3px}*/
+
+
+/*a.flag:after{ content: "/"; color: grey }
+a.flag:last-child:after{ content: "" }*/
+
+nav.breadcrumbs > a:after{ content: ">"; color: grey }
+nav.breadcrumbs > a:last-child:after{ content: "" }
+
+
+span{margin-right: 10px}
+nav a.default {margin-right: 1em}
+
+* {
+  /*margin: 0;
+  padding: 0;*/
+
+  font-family: Georgia, Palatino, Times, 'Times New Roman', sans-serif;
+}
+
+body {
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: #f30;
+}
+
+a:hover {
+  color: #f90;
+}
