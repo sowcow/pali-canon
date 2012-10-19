@@ -9,6 +9,11 @@ Given 'I have a site' do
   copy_classes
 end
 
+Given 'I have compiled the site' do
+  step 'I have a site'
+  nanoc 'compile'
+end
+
 
 def nanoc command
   step "I successfully run `ruby -S nanoc #{command}`"
