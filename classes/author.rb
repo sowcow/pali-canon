@@ -1,6 +1,6 @@
 class Page
   def route path=nil
-    path ? path.gsub(' ','_') : super
+    path ? path.gsub(' ','_') : super()
   end
 end
 
