@@ -1,0 +1,115 @@
+#!/usr/bin/env ruby
+
+
+###############
+#     Odd     #
+###############
+
+class Nanoc::Item
+  def +@
+    self[:object]
+  end   
+end
+
+#compile('/'){ layout 'default' };  route('/'){'/index.html'}
+#compile('/stylesheet/'){};         route('/stylesheet/'){'/style.css'}
+
+@file = '../log.txt'
+def log?
+  File.exist?(@file) ? File.read(@file) : ''
+end
+def log data
+  File.write @file, log? + "\n#{ data }"
+end
+
+module Preprocessor  # one .preprocess per item!
+
+  def self.preprocess! context, classes
+
+    while item = context.items.find { |item| !(+item) || !(+item).processed? }
+      prepare item, classes
+      (+item).do_preprocess context
+    end
+
+    fix_children context # after preprocessing finished
+  end
+
+  def self.prepare item, classes
+    item[:object] = classes[item].new(item) unless +item
+    item
+  end
+  def self.fix_children context
+    context.items.each do |item|
+      (+item).fix_children context
+    end
+  end  
+end
+
+module ::Builder
+
+  def self.build! item, context, items_context
+    
+    unless item.is_a? FakeDir
+
+      context.compile (+item).identifier do
+        (+item).compile self
+      end
+
+      context.route (+item).identifier do
+        (+item).route    
+      end
+    end
+
+    (+item).compile_children context, items_context
+  end
+end
+
+def root items, classes
+  items.find { |item| item.identifier == '/' } or Preprocessor.prepare Nanoc::Item.new('', { hidden: true }, '/'), classes
+end
+
+
+#################
+#    Layouts    #
+#################
+#
+# The first matching rule is used:
+# layout '*', :erb
+# layout '/default/', :slim
+# layout '/default/', :haml, format: :html5
+# layout %r{^/_.+/$}, :erb
+# /default/ may be layouts/default.with-any-extension
+# all unmatched layouts will be compiled using filter determined by extension:
+#
+
+FakeItems.new('layouts').items.each do |item|
+  layout item.identifier, FilterFor[item.file]
+end
+
+
+#################
+#     Items     #
+#################
+
+fake = FakeItems.new('content')
+classes = ItemClass.new
+
+
+##################
+#   Preprocess   #
+##################
+
+Preprocessor.preprocess! fake, classes
+
+preprocess do
+  Preprocessor.preprocess! self, classes
+end
+
+
+###################
+#  Compile/Route  #
+###################
+#
+# FIXME "if" just for specs, to prevent crashes
+#
+Builder.build! root(fake.items, classes), self, fake if fake.items.count > 0
