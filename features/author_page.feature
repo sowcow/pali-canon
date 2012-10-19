@@ -1,4 +1,3 @@
-@wip
 Feature: each author have page
 
   Scenario:
