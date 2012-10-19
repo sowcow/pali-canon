@@ -19,7 +19,6 @@ def copy_all params
 end
 
 
-__END__
- || undefined method 'feature' for ...ScenarioOutline...reporting.rb:101
- \/ 
- ENV['ARUBA_REPORT_DIR'] = 'doc_features'
+Before do
+  @aruba_timeout_seconds = 60
+end
