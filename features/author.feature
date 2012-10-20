@@ -1,4 +1,4 @@
-Feature: each author have page
+Feature: each author have a page
 
   Scenario:
     Given I have compiled the site
