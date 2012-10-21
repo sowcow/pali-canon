@@ -1,15 +1,15 @@
 require 'support/all'
 
 
-describe Page do
-  subject { Page.new '' }
+describe Canon do
+  # subject { subject.new '' } # << crashes Ruby
+  subject { Canon.new '' }
 
-  explain_method :relative_path, %W[
-    /                /
-    /some/           /
-    /some/other/     /some/
-    some/other/      some/
-    some/other/one/  some/other/
-    some/other/one   `nil`
-  ]
+  explain_method :relative_path, <<-DOC
+    /canon/en by Translator/             =>  `nil`
+    /canon/en by Translator/one/         =>   /
+    /canon/en by Translator/two/         =>   /
+    /canon/en by Translator/some/other/  =>  /some/
+    /canon/en by Translator/some/next/   =>  /some/
+  DOC
 end

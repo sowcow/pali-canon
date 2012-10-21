@@ -1,15 +1,25 @@
+DROP_LAST = [%r|^(.*/)[^/]+/$|, 1]
+LAST = [%r|^.*/([^/]+)/$|, 1]
+
 class Page
+  # it should be same for siblings! ...kind of parent.id ?
+  #
   def relative_path id=identifier
-    return id if id == '/'
-    id[%r|^(.*/)[^/]+/$|, 1]
+    id[*DROP_LAST]
   end
+  
+  # relative_path && name ~ very same!
+  #
+  def name id=identifier
+    id[*LAST]
+  end  
 end
 
 class Canon < Page
   GOOD_ID = 'canon/**'
   PRIORITY = -1
 
-  INFO = %r|^/canon/(.*) by (.*)/(.*)$| 
+  INFO = %r|^/canon/([^/]*) by ([^/]*)(/.*)$| 
   TITLE = [INFO, 1]
   AUTHOR = [INFO, 2]
   RELATIVE_PATH = [INFO, 3]
@@ -21,7 +31,7 @@ class Canon < Page
     identifier[*TITLE]
   end
   def relative_path id=identifier
-    id[*RELATIVE_PATH].sub(%r|(?<=./).+/|, '')
+    id[*RELATIVE_PATH][*DROP_LAST]
   end
 
   attr_reader :siblings
