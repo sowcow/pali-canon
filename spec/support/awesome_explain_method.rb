@@ -16,11 +16,11 @@
 module Helpers
   def explain_method method, table
     context "##{method}" do
+      table = table.split(/(?:=>|$)/).map(&:strip).reject(&:empty?) if table.is_a? String
       table = table.each_slice(2)
       table.each do |inputs, outputs| # 's mean string
         input = prepare inputs
         output = prepare outputs
-
         specify table(inputs, outputs, table) do
           subject.send(method, input).should == output
         end
