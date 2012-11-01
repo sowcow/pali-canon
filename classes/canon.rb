@@ -8,7 +8,7 @@ class Page
     id[*DROP_LAST]
   end
   
-  # relative_path && name ~ very same!
+  # relative_path && name ~ items are very same!
   #
   def name id=identifier
     id[*LAST]
