@@ -4,7 +4,7 @@ require 'support/all'
 describe Page do
   subject { Page.new '' }
 
-  explain_method :relative_path, %W[
+  explain :relative_path, %W[
     /                 `nil`
     /some/            /
     /some/other/      /some/
@@ -13,7 +13,7 @@ describe Page do
     /some/other/two/  /some/other/
   ]
 
-  explain_method :name, %W[
+  explain :name, %W[
     /                 `nil`
     /some/            some
     /some/other/      other

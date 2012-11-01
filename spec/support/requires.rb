@@ -1,3 +1,5 @@
+require 'rspec_explain'
+
 project_root = '../..'
 
 Dir.chdir project_root do
