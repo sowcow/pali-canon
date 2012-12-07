@@ -1,6 +1,15 @@
-# Pali::Canon
+# pali-canon
 
-TODO: Write a gem description
+original, translations, site generation software
+
+looks too ambitiously? I know.
+
+## Progress
+
+for now there is:
+* mainly an idea to use github as a nice storage for translations
+* translations will be used to generate static site with `nanoc` *soon hopefully*
+* canon in markdown as a gem :) *almost here*
 
 ## Installation
 
