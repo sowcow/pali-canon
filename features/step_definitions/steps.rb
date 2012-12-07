@@ -4,7 +4,6 @@ end
 
 Given 'I have a site' do
   open_new_empty_site
-  copy_wrapper_contents_here
   copy_data_dir_here
   copy_classes
 end
@@ -19,26 +18,52 @@ def nanoc command
   step "I successfully run `ruby -S nanoc #{command}`"
 end
 
-def copy_wrapper_contents_here
-  copy_all from: 'wrapper/.', to: current_dir
+def nanoc_oo command
+  step "I successfully run `ruby -S nanoc-oo #{command}`"
 end
 
+
+# def copy_wrapper_contents_here
+#   copy_all from: 'wrapper/.', to: current_dir
+# end
+
 def copy_data_dir_here
-  copy_all from: 'content', to: current_dir
+  copy_all from: content, to: current_dir
 end
 
 def copy_classes
-  copy_all from: 'classes/.', to: File.join(current_dir, 'lib/classes')
+  copy_all from: join(classes,'.'), to: join(current_dir, 'lib/classes')
 end
 
 def open_new_empty_site
-  nanoc 'create-site site'
+  nanoc_oo 'site --blank'
   step 'I cd to "site"'
-  rm_r File.join(current_dir, 'content')
+  # nanoc 'create-site site'
+  # step 'I cd to "site"'
+  # rm_r File.join(current_dir, 'content')
 end
 
 
+def classes
+  join data,'classes'
+end
 
+def content
+  join data,'content'
+end
+
+def data
+  File.expand_path '../../data/pali-canon', File.dirname(__FILE__)
+  # Gem.datadir 'pali-canon'  # it is invisible here someway
+end
+
+BEGIN{
+  def copy_all params
+    from, to = params[:from], params[:to]
+    cp_r from, to
+  end
+  def join *a; File.join *a end
+}
 
 
 

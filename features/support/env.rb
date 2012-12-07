@@ -1,3 +1,4 @@
+#require 'pali-canon'
 require 'aruba/cucumber'
 include FileUtils
 
@@ -10,12 +11,6 @@ AfterConfiguration do |config|
 end
 at_exit do
   clean_temp
-end
-
-
-def copy_all params
-  from, to = params[:from], params[:to]
-  cp_r from, to
 end
 
 

@@ -5,7 +5,7 @@ require 'pali-canon/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "pali-canon"
-  gem.version       = Pali::Canon::VERSION
+  gem.version       = PaliCanon::VERSION
   gem.authors       = ["Alexander K"]
   gem.email         = ["xpyro@ya.ru"]
   gem.description   = %q{TODO: Write a gem description}
