@@ -1,18 +1,12 @@
 Given 'I have an empty site' do
+  # cli?
   open_new_empty_site
-end
-
-Given 'I have a site' do
-  open_new_empty_site
-  copy_data_dir_here
   copy_classes
 end
 
-Given 'I have compiled the site' do
-  step 'I have a site'
+When 'I compile the site' do
   nanoc 'compile'
 end
-
 
 def nanoc command
   step "I successfully run `ruby -S nanoc #{command}`"

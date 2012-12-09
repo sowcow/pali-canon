@@ -16,8 +16,8 @@ Feature: related tests
     Then a file named "content/index.html" should not exist
 
 
-  Scenario: I have a site
-    Given I have a site
-    Then a directory named "content" should exist
-    Then a file named "content/index.slim" should exist
-    Then a directory named "lib/classes" should exist
+  #Scenario: I have a site
+  #  Given I have a site
+  #  Then a directory named "content" should exist
+  #  Then a file named "content/index.slim" should exist
+  #  Then a directory named "lib/classes" should exist
