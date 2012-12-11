@@ -19,10 +19,12 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rspec_explain'
+  gem.add_development_dependency 'cucumber'
+  gem.add_development_dependency 'aruba'
 
   gem.add_dependency 'nanoc'
   gem.add_dependency 'nanoc-oo'
-  # gem.add_dependency 'thor'
+  gem.add_dependency 'thor'
 
-  # gem.executables << 'pali-canon'
+  gem.executables << 'pali-canon'
 end

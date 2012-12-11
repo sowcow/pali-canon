@@ -10,7 +10,7 @@ AfterConfiguration do |config|
   clean_temp
 end
 at_exit do
-  clean_temp
+  #clean_temp
 end
 
 

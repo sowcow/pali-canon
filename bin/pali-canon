@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+require 'pali-canon'
+require 'thor'
+
+class CLI < Thor
+  desc 'make DIR', 'Creates Pali Canon static site in the given directory'
+  def make dir
+    PaliCanon.prepare dir
+    PaliCanon.compile dir
+  end  
+
+  desc 'prepare DIR', 'Creates nanoc site with Pali Canon content for future compilation'
+  def prepare dir
+    PaliCanon.prepare dir
+  end
+
+  desc 'compile DIR', 'Compiles prepared nanoc site and removes all sources'
+  def compile dir
+    PaliCanon.compile dir
+  end    
+end
+
+
+CLI.start
+
+__END__
+class CLI < Thor::Group
+  argument :name, type: :string, desc: 'directory name for new site'
+  class_option :blank, type: :boolean, default: false, desc: 'without content files'
+  desc 'creates nanoc site with object-oriented wrapper'
+
+  def create_it
+    NanocOO.create_site name, options[:blank]
+  end  
+
+  def self.banner; super.sub('cli ','') end
+end

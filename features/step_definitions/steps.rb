@@ -1,3 +1,7 @@
+Given /^I remove "(.*?)" directory$/ do |dir|
+  rm_rf join(current_dir,dir)
+end
+
 Given 'I have an empty site' do
   # cli?
   open_new_empty_site
