@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = PaliCanon::VERSION
   gem.authors       = ["Alexander K"]
   gem.email         = ["xpyro@ya.ru"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{there are many uncertainties about this project so I dont know:)}
+  gem.summary       = %q{original(pending), translations(pending), site generation software}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
