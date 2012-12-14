@@ -6,10 +6,7 @@ looks too ambitiously? I know.
 
 ## Progress
 
-for now there is:
-* mainly an idea to use github as a nice storage for translations
-* translations will be used to generate static site with `nanoc` *soon hopefully*
-* canon in markdown as a gem :) *almost here*
+take a look at the Summary column [on project board](https://trello.com/board/pali-canon/50c3273fcb23aedc76001c60)
 
 ## Installation
 
